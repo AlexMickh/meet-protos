@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+option go_package = "github.com/AlexMickh/meet-protos/pkg/api/user";
+
+import "google/protobuf/empty.proto";
+
+package user;
+
+service User {
+    rpc Create (CreateRequest) returns (CreateResponse);
+    rpc GetById (GetByIdRequest) returns (GetByIdResponse);
+    rpc GetCreds (GetCredsRequest) returns (GetCredsResponse);
+    rpc VerifyEmail (VerifyEmailRequest) returns (google.protobuf.Empty);
+}
+
+message CreateRequest {
+    string login = 1;
+    string email = 2;
+    string password = 3;
+}
+
+message CreateResponse {
+    string id = 1;
+}
+
+message GetByIdRequest {
+    string id = 1;
+}
+
+message GetByIdResponse {
+    string id = 1;
+    string login = 2;
+    string email = 3;
+    string about = 4;
+    string avatar_url = 5;
+    repeated string skills = 6;
+}
+
+message GetCredsRequest {
+    string email = 1;
+}
+
+message GetCredsResponse {
+    string id = 1;
+    string email = 2;
+    string password = 3;
+}
+
+message VerifyEmailRequest {
+    string email = 1;
+}
