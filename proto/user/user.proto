@@ -11,6 +11,8 @@ service User {
     rpc GetById (GetByIdRequest) returns (GetByIdResponse);
     rpc GetCreds (GetCredsRequest) returns (GetCredsResponse);
     rpc VerifyEmail (VerifyEmailRequest) returns (google.protobuf.Empty);
+    rpc UpdateInfo (UpdateInfoRequest) returns (UpdateInfoResponse);
+    rpc Delete (DeleteRequest) returns (google.protobuf.Empty);
 }
 
 message CreateRequest {
@@ -48,4 +50,24 @@ message GetCredsResponse {
 
 message VerifyEmailRequest {
     string email = 1;
+}
+
+message UpdateInfoRequest {
+    string id = 1;
+    optional string about = 2;
+    optional bytes avatar = 3;
+    repeated string skills = 4;
+}
+
+message UpdateInfoResponse {
+    string id = 1;
+    string login = 2;
+    string email = 3;
+    string about = 4;
+    string avatar_url = 5;
+    repeated string skills = 6;
+}
+
+message DeleteRequest {
+    string id = 1;
 }
